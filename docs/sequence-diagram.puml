@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant Program
+participant LibraryService
+participant BookRepository
+participant Book
+participant Database
+
+User -> Program: Select "Add book"
+Program -> User: Request title, author, year
+User -> Program: Input title, author, year
+Program -> LibraryService: AddBook(title, author, year)
+LibraryService -> Book: new Book(0, title, author, year)
+LibraryService -> BookRepository: AddBook(book)
+BookRepository -> Database: INSERT INTO Books
+Database --> BookRepository: Success
+BookRepository --> LibraryService: Success
+LibraryService --> Program: Success
+Program --> User: Confirmation
+
+@enduml

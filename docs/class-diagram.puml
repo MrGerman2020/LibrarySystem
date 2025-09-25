@@ -1,0 +1,34 @@
+@startuml
+package "LibrarySystem" {
+  class Book {
+    +int Id
+    +string Title
+    +string Author
+    +int Year
+    +Book(id: int, title: string, author: string, year: int)
+  }
+
+  class BookRepository {
+    -string _connectionString
+    +BookRepository()
+    +AddBook(book: Book)
+    +GetAllBooks(): List<Book>
+    -InitializeDatabase()
+  }
+
+  class LibraryService {
+    -BookRepository _repository
+    +LibraryService(repository: BookRepository)
+    +AddBook(title: string, author: string, year: int)
+    +GetAllBooks(): List<Book>
+  }
+
+  class Program {
+    +Main()
+  }
+
+  Program --> LibraryService
+  LibraryService --> BookRepository
+  BookRepository --> Book
+}
+@enduml
