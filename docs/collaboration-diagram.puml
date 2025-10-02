@@ -1,0 +1,8 @@
+@startuml
+:User: --> [Program]: Select "Add book"
+[Program] --> [LibraryService]: AddBook(title, author, year)
+[LibraryService] --> [Book]: new Book(0, title, author, year)
+[LibraryService] --> [BookRepository]: AddBook(book)
+[BookRepository] --> [Database]: INSERT INTO Books
+note right: Messages represent method calls for adding a book.
+@enduml

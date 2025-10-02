@@ -1,0 +1,19 @@
+@startuml
+package "LibrarySystem" {
+  package "Models" {
+    [Book]
+  }
+  package "Repositories" {
+    [BookRepository]
+  }
+  package "Services" {
+    [LibraryService]
+  }
+  package "Main" {
+    [Program]
+  }
+  [Program] --> [LibraryService]
+  [LibraryService] --> [BookRepository]
+  [BookRepository] --> [Book]
+}
+@enduml
